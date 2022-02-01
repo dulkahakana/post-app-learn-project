@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// импортируем реакт везде где будет реакт компонент
+import React, { useState } from 'react'
+import Counter from './components/Counter'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [value, setValue] = useState('ТЕКСТ В ИНПУТЕ')
+
+    return (
+        <div className='App'>
+            <Counter/>
+            <Counter/>
+            <Counter/>
+            <h3>{value}</h3>
+            <input
+                type="text" 
+                value={value}
+                onChange={event => setValue(event.target.value)}
+            />
+        </div>
+    )
 }
 
-export default App;
+export default App
