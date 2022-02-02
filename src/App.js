@@ -1,5 +1,5 @@
 // импортируем реакт везде где будет реакт компонент
-import React, { useState } from 'react'
+import React/*, { useState }*/ from 'react'
 // import ClassCounter from './components/ClassCounter'
 // import Counter from './components/Counter'
 import './styles/dh-normilize-v1.0.0.scss'
@@ -18,9 +18,9 @@ function App() {
                     <div>
                         JavaScript - язык програмирования
                     </div>
-                    <div className='post__btns'>
-                        <button>Удалить</button>
-                    </div>
+                </div>
+                <div className='post__btns'>
+                    <button>Удалить</button>
                 </div>
             </div>
             
