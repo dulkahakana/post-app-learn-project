@@ -1,22 +1,29 @@
 // импортируем реакт везде где будет реакт компонент
 import React, { useState } from 'react'
-import Counter from './components/Counter'
+// import ClassCounter from './components/ClassCounter'
+// import Counter from './components/Counter'
+import './styles/dh-normilize-v1.0.0.scss'
+import './styles/google-font-colection.scss'
+import './styles/App.scss'
 
 function App() {
 
-    const [value, setValue] = useState('ТЕКСТ В ИНПУТЕ')
+    // const [value, setValue] = useState('ТЕКСТ В ИНПУТЕ')
 
     return (
         <div className='App'>
-            <Counter/>
-            <Counter/>
-            <Counter/>
-            <h3>{value}</h3>
-            <input
-                type="text" 
-                value={value}
-                onChange={event => setValue(event.target.value)}
-            />
+            <div className='post'>
+                <div className='post__content'>
+                    <strong>1. JavaScript</strong>
+                    <div>
+                        JavaScript - язык програмирования
+                    </div>
+                    <div className='post__btns'>
+                        <button>Удалить</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     )
 }

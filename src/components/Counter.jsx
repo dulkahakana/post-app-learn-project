@@ -8,6 +8,7 @@ const Counter = () => {
     const decrement = () => setCount(count - 1)
 
     return <div>
+        <h2>Function Counter</h2>
         <h2>{count}</h2>
         <button onClick={increment}>Increment</button>
         <button onClick={decrement}>Decrement</button>
