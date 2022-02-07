@@ -1,0 +1,19 @@
+.myBtn {
+    padding: 0.4em 1em;
+    color: grey;
+    font-size: 1em;
+    background: transparent;
+    border: 1px solid grey;
+    cursor: pointer;
+    border-radius: 0.3em;
+
+    &:hover {
+        color: rgb(70, 70, 70);
+        border-color: rgb(70, 70, 70);
+    }
+    
+    &:disabled {
+        color: rgb(200, 200, 200);
+        border-color: rgb(200, 200, 200);
+    }
+}
