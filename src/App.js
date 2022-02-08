@@ -1,5 +1,5 @@
 // импортируем реакт везде где будет реакт компонент
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 // import ClassCounter from './components/ClassCounter'
 // import Counter from './components/Counter'
 import PostList from './components/PostList'
@@ -19,14 +19,22 @@ function App() {
         { id: 4, title: 'Java', body: 'Язык програмирования' },
     ])
 
-    const [title, setTitle] = useState('')
-    const bodyInputRef = useRef()
+    const [titleNewPost, setTitleNewPost] = useState('')
+    const [bodyNewPost, setBodyNewPost] = useState('')
 
 
     const addNewPost = (e) => {
         e.preventDefault()
-        console.log(title)
-        console.log(bodyInputRef.current.value)
+        
+        const newPost = {
+            id: Date.now(),
+            title: titleNewPost,
+            body: bodyNewPost
+        }
+
+        setPosts([...posts, newPost])
+        setTitleNewPost('')
+        setBodyNewPost('')
     }
 
     return (
@@ -36,15 +44,15 @@ function App() {
             <form className='create__post'>
                 {/* Управляемый компонент */}
                 <MyInput
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
+                    value={titleNewPost}
+                    onChange={e => setTitleNewPost(e.target.value)}
                     type='text'
                     placeholder='Название поста'
                 />
-                {/* Неуправляемый (неконтролируемый) инпут */}
-                {/* если useRef использовать на своем компоненте (не стандартном html элементе), то этот компонент необходимо обернуть в React.forwardRef, для того чтобы можно было передать пропс ref созданные useRef() далее см. ./components/UI/input/MyInput.jsx */}
+                {/* Управляемый компонент */}
                 <MyInput
-                    ref={bodyInputRef}
+                    value={bodyNewPost}
+                    onChange={e => setBodyNewPost(e.target.value)}
                     type='text'
                     placeholder='Описание поста'
                 />

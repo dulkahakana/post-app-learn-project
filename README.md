@@ -1,3 +1,3 @@
 # Ulbi TV YouTube lessons
 
-*bookmark time: 0:46*
+*bookmark time: 0:53*
