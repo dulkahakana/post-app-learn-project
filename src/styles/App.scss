@@ -22,7 +22,7 @@
 }
 
 .block__title {
-    margin-top: 0.6em;
+    margin-top: 0.3em;
     font-weight: 500;
     font-size: 1.5em;
     text-align: center;
@@ -39,4 +39,22 @@
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
     grid-gap: 1em;
+}
+
+.sort__options {
+    select {
+        width: 100%;
+        padding: 0.4em 0.4em;
+        font-size: 1rem;        
+        background-color: transparent;
+        border: 1px solid grey;    
+        border-radius: 0.4em;
+    }
+}
+
+hr {
+    margin: 2rem 0 0.5rem 0;
+    height: 2px;
+    background-color: grey;
+    // border: 1px solid black;
 }
