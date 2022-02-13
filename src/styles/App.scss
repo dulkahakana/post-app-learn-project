@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+body {
+    background-color: rgb(248, 248, 248);
+}
+
 .App {
     width: 800px;
 }
@@ -18,11 +22,14 @@
     border: 2px solid grey;
     
     border-radius: 0.4em;
-    background-color: rgb(250, 250, 250);
+    background-color: inherit;
+    &:hover {
+        background-color: white;
+    }
 }
 
 .block__title {
-    margin-top: 0.3em;
+    margin-top: 0.7em;
     font-weight: 500;
     font-size: 1.5em;
     text-align: center;
@@ -44,7 +51,8 @@
 .sort__options {
     select {
         width: 100%;
-        padding: 0.4em 0.4em;
+        margin-top: 1em;
+        padding: 0.6em 0.6em;
         font-size: 1rem;        
         background-color: transparent;
         border: 1px solid grey;    
@@ -53,7 +61,7 @@
 }
 
 hr {
-    margin: 2rem 0 0.5rem 0;
+    margin: 1em 0;
     height: 2px;
     background-color: grey;
     // border: 1px solid black;
