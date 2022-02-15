@@ -2,6 +2,14 @@ import React from 'react'
 import PostItem from './PostItem'
 
 const PostList = ({ remove, posts, title }) => {
+    if(!posts.length) {
+        return (
+            <div className='block__title'>
+                Посты не были найдены
+            </div>
+        )
+    }
+    
     return (
         <div>        
             <h1 className='block__title'>{title}</h1>

@@ -5,7 +5,7 @@ import MyInput from '../components/UI/input/MyInput'
 
 const PostFilter = ({filter, setFilter}) => {
     return (
-        <div className='sort__options'>
+        <div>
             <MyInput
                 value={filter.quary}
                 onChange={e => setFilter({...filter, quary: e.target.value})}
@@ -13,11 +13,12 @@ const PostFilter = ({filter, setFilter}) => {
             />
             <MySelect
                 value={filter.sort}
-                onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
-                defaultValue='Сортировка'
+                // в onChange, для селекта мы сразу получаем value (выбранный пункт, а не e.target.value)
+                onChange={selectedSort => setFilter({...filter, sort: selectedSort})}                
+                defaultValue='Сортировать'
                 options={[
-                    {value: 'title', name: 'По названию'},
-                    {value: 'body', name: 'По описанию'}
+                    {value: 'title', name: 'по названию'},
+                    {value: 'body', name: 'по описанию'}
                 ]}
             />
         </div>

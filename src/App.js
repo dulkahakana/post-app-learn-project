@@ -21,7 +21,7 @@ function App() {
     const [filter, setFilter] = useState({sort: '', quary: ''})
 
     const sortedPosts = useMemo(() => {
-        console.log('sortedPosts - обнавлен')
+        // console.log('sortedPosts - обнавлен')
         if (filter.sort) {
             return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
         }
@@ -49,12 +49,13 @@ function App() {
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}
-            />
+            />     
             
-            {sortedAndSearchedPosts.length !== 0
-                ? <PostList remove={removePost} posts={sortedAndSearchedPosts} title={'Список постов'}/>
-                : <div className='block__title'>Посты не были найдены</div>
-            }
+            <PostList
+                remove={removePost}
+                posts={sortedAndSearchedPosts}
+                title={'Список постов'}
+            />
         </div>
     )
 }
