@@ -5,7 +5,7 @@ import MyInput from '../components/UI/input/MyInput'
 
 const PostFilter = ({filter, setFilter}) => {
     return (
-        <div>
+        <div className='post-filter'>
             <MyInput
                 value={filter.quary}
                 onChange={e => setFilter({...filter, quary: e.target.value})}

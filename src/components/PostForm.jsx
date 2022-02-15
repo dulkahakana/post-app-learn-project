@@ -17,7 +17,12 @@ const PostForm = ({create}) => {
 
     return (
         <>
-            <h2 className='block__title'>Добавить новый пост</h2>
+            <h2
+                className='block__title'
+                style={{
+                    marginBottom: '1.2em',
+                }}
+            >Добавить новый пост</h2>
             <form className='create__post'>
                 {/* Управляемый компонент */}
                 <MyInput
@@ -33,7 +38,11 @@ const PostForm = ({create}) => {
                     type='text'
                     placeholder='Описание поста'
                 />
-                <MyButton onClick={addNewPost}>Создать пост</MyButton>
+                <MyButton
+                    onClick={addNewPost}
+                >
+                    Создать пост
+                </MyButton>
             </form>
         </>
     )

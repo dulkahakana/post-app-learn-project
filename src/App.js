@@ -4,11 +4,13 @@ import React, { useMemo, useState } from 'react'
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
 import PostFilter from './components/PostFilter'
+import MyModal from './components/UI/modal/MyModal'
 
 // Import Styles
 import './styles/dh-normilize-v1.0.0.scss'
 import './styles/google-font-colection.scss'
 import './styles/App.scss'
+import MyButton from './components/UI/button/MyButton'
 
 function App() {
     const [posts, setPosts] = useState([
@@ -19,6 +21,7 @@ function App() {
     ])
     
     const [filter, setFilter] = useState({sort: '', quary: ''})
+    const [modal, setModal] = useState(false)
 
     const sortedPosts = useMemo(() => {
         // console.log('sortedPosts - обнавлен')
@@ -41,10 +44,7 @@ function App() {
     }    
 
     return (
-        <div className = 'App'>
-            <PostForm create={createPost}/>
-
-            <hr/>
+        <div className = 'App'>       
 
             <PostFilter
                 filter={filter}
@@ -56,6 +56,15 @@ function App() {
                 posts={sortedAndSearchedPosts}
                 title={'Список постов'}
             />
+
+            <MyModal
+                visible={modal}
+                setVisible={setModal}    
+            >
+                <PostForm create={createPost}/>
+            </MyModal>
+            <hr/>
+            <MyButton onClick={() => setModal(true)}>Создать пост</MyButton>
         </div>
     )
 }
