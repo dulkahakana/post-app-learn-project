@@ -1,5 +1,5 @@
 // импортируем реакт везде где будет реакт компонент
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
@@ -11,6 +11,7 @@ import './styles/dh-normilize-v1.0.0.scss'
 import './styles/google-font-colection.scss'
 import './styles/App.scss'
 import MyButton from './components/UI/button/MyButton'
+import { usePosts } from './hooks/usePost'
 
 function App() {
     const [posts, setPosts] = useState([
@@ -19,21 +20,12 @@ function App() {
         { id: 3, title: 'Python', body: 'Высокоуровневый язык программирования общего назначения с динамической строгой типизацией и автоматическим управлением памятью' },
         { id: 4, title: 'Java', body: 'Cтрого типизированный объектно-ориентированный язык программирования общего назначения' },
     ])
-    
+
+    // TODO неправильно написано quAry нужно исправить: quEry
     const [filter, setFilter] = useState({sort: '', quary: ''})
     const [modal, setModal] = useState(false)
-
-    const sortedPosts = useMemo(() => {
-        // console.log('sortedPosts - обнавлен')
-        if (filter.sort) {
-            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
-        }
-        return posts
-    }, [filter.sort, posts])
-
-    const sortedAndSearchedPosts = useMemo(() => {
-        return sortedPosts.filter(post => post.title.toLowerCase().includes(filter.quary.toLowerCase()))
-    }, [filter.quary, sortedPosts])
+    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.quary)  
+    
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost]) 
@@ -61,7 +53,7 @@ function App() {
                 visible={modal}
                 setVisible={setModal}    
             >
-                <PostForm create={createPost}/>
+                <PostForm create={createPost} setVisible={setModal}/>
             </MyModal>
             <hr/>
             <MyButton onClick={() => setModal(true)}>Создать пост</MyButton>

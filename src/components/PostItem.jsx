@@ -3,7 +3,8 @@ import MyButton from './UI/button/MyButton'
 
 const PostItem = (props) => {
     return (
-        <div className='post'>
+        // "это был блок <div className='post'>
+        <div className='post_box'> 
             <div className='post__content'>
                 <div className='post__title'>{props.number}. {props.post.title}</div>
                 <div className='text'>
