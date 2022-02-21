@@ -7,8 +7,8 @@ const PostFilter = ({filter, setFilter}) => {
     return (
         <div className='post-filter'>
             <MyInput
-                value={filter.quary}
-                onChange={e => setFilter({...filter, quary: e.target.value})}
+                value={filter.query}
+                onChange={e => setFilter({...filter, query: e.target.value})}
                 placeholder='Поиск...'
             />
             <MySelect

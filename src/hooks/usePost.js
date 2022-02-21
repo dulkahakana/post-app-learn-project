@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 
-export const useSortedPosts = (posts, sort) => {
+const useSortedPosts = (posts, sort) => {
     const sortedPosts = useMemo(() => {
         // console.log('sortedPosts - обнавлен')
         if (sort) {
