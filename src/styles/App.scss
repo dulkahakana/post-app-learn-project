@@ -62,6 +62,13 @@ body {
     align-items: center;
 }
 
+.create-post__btn {
+    // width: 100%;
+    max-width: 100%;
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
 
 hr {
     margin: 1em 0;
@@ -89,3 +96,4 @@ hr {
     opacity: 0;
     transition: opacity 500ms ease-in;
 }
+

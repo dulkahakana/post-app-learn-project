@@ -1,8 +1,8 @@
 // импортируем реакт везде где будет реакт компонент
 // везде где будет использоваться jsx
 import React, { useEffect, useState } from 'react'
+import PostService from './API/postService'
 import { usePosts } from './hooks/usePost'
-import axios from 'axios'
 // Import components
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
@@ -15,17 +15,24 @@ import MyButton from './components/UI/button/MyButton'
 import './styles/dh-normilize-v1.0.0.scss'
 import './styles/google-font-colection.scss'
 import './styles/App.scss'
+import Loader from './components/UI/Loader/Loader'
 
 function App() {
     const [posts, setPosts] = useState([])    
     const [filter, setFilter] = useState({sort: '', query: ''})
     const [modal, setModal] = useState(false)
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
+    const [isPostLoading, setIsPostLoading] = useState(false)
 
     const fetchPost = async () => {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        setPosts(response.data)
-        // console.log(response.data)
+        setIsPostLoading(true)
+        // setTimeout() для имитации загрузки
+        setTimeout(async () => {
+            const posts = await PostService.getAll()
+            setPosts(posts)
+            setIsPostLoading(false)
+        }, 1000)
+        
     }
 
     useEffect(() => {
@@ -34,29 +41,35 @@ function App() {
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost]) 
-    }
+    } 
     
-    
-
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id))
     }    
 
     return (
         <div className = 'App'>
+            <MyButton 
+                onClick={() => setModal(true)}
+                className='create-post__btn'
+            >Создать пост</MyButton>
 
-        <MyButton onClick={fetchPost}>GET POST TEST</MyButton>
+            <hr/>
 
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}
             />     
             
-            <PostList
-                remove={removePost}
-                posts={sortedAndSearchedPosts}
-                title={'Список постов'}
-            />
+            {isPostLoading
+                ? <Loader/>
+                : <PostList
+                    remove={removePost}
+                    posts={sortedAndSearchedPosts}
+                    title={'Список постов'}
+                />
+            }
+            
 
             <MyModal
                 visible={modal}
@@ -65,9 +78,7 @@ function App() {
                 <PostForm create={createPost} setVisible={setModal}/>
             </MyModal>
 
-            <hr/>
             
-            <MyButton onClick={() => setModal(true)}>Создать пост</MyButton>
         </div>
     )
 }

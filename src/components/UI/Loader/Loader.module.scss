@@ -1,0 +1,22 @@
+$loaderSize: 50px;
+
+.loader {
+    margin: 1em auto;
+    width: $loaderSize;
+    height: $loaderSize;
+    border-radius: 50%;
+    background: rgb(248, 248, 248);
+    border: 4px dotted grey;
+
+    animation: rotate 1.5s infinite linear;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+    to {
+        transform: rotate(360deg) scale(1.4);
+    }
+}
+
