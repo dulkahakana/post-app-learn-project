@@ -9,14 +9,13 @@ import PostForm from './components/PostForm'
 import PostFilter from './components/PostFilter'
 import MyModal from './components/UI/modal/MyModal'
 import MyButton from './components/UI/button/MyButton'
-
-
 // Import Styles
 import './styles/dh-normilize-v1.0.0.scss'
 import './styles/google-font-colection.scss'
 import './styles/App.scss'
 import Loader from './components/UI/Loader/Loader'
 
+// Приложение
 function App() {
     const [posts, setPosts] = useState([])    
     const [filter, setFilter] = useState({sort: '', query: ''})
