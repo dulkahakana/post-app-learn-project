@@ -2,7 +2,9 @@
 // везде где будет использоваться jsx
 import React, { useEffect, useState } from 'react'
 import PostService from './API/postService'
+// импорт пользовательских хуков
 import { usePosts } from './hooks/usePost'
+import { useFetching } from './hooks/useFetching'
 // Import components
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
@@ -13,7 +15,7 @@ import MyButton from './components/UI/button/MyButton'
 import './styles/dh-normilize-v1.0.0.scss'
 import './styles/google-font-colection.scss'
 import './styles/App.scss'
-import Loader from './components/UI/Loader/Loader'
+import Loader from './components/UI/Loader/Loader' 
 
 // Приложение
 function App() {
@@ -21,21 +23,14 @@ function App() {
     const [filter, setFilter] = useState({sort: '', query: ''})
     const [modal, setModal] = useState(false)
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
-    const [isPostLoading, setIsPostLoading] = useState(false)
 
-    const fetchPost = async () => {
-        setIsPostLoading(true)
-        // setTimeout() для имитации загрузки
-        setTimeout(async () => {
-            const posts = await PostService.getAll()
-            setPosts(posts)
-            setIsPostLoading(false)
-        }, 1000)
-        
-    }
+    const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
+        const posts = await PostService.getAll()
+        setPosts(posts)
+    })    
 
     useEffect(() => {
-        fetchPost()
+        fetchPosts()
     }, [])
 
     const createPost = (newPost) => {
@@ -58,8 +53,12 @@ function App() {
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}
-            />     
-            
+            /> 
+
+            {postError &&
+                <div className='error_message'>Произошла ошибка: {postError}</div>
+            }
+
             {isPostLoading
                 ? <Loader/>
                 : <PostList
@@ -67,17 +66,11 @@ function App() {
                     posts={sortedAndSearchedPosts}
                     title={'Список постов'}
                 />
-            }
-            
+            }            
 
-            <MyModal
-                visible={modal}
-                setVisible={setModal}    
-            >
+            <MyModal visible={modal} setVisible={setModal}>
                 <PostForm create={createPost} setVisible={setModal}/>
-            </MyModal>
-
-            
+            </MyModal>            
         </div>
     )
 }
