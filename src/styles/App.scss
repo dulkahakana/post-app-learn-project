@@ -1,6 +1,7 @@
 #root {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 body {
@@ -50,6 +51,14 @@ body {
     text-align: center;
 }
 
+.post__btns {
+    display: flex;
+}
+
+.open-post__btn {
+    margin: 0 0.3em;
+}
+
 .post-filter {
     margin-top: 1em;
 }
@@ -82,7 +91,6 @@ body {
     font-weight: 700;
 }
 
-
 hr {
     margin: 1em 0;
     height: 2px;
@@ -90,6 +98,16 @@ hr {
     // border: 1px solid black;
 }
 
+a {
+    color: inherit;
+    &:hover {
+        color: rgb(70, 70, 70);
+        border-color: rgb(70, 70, 70);
+    }
+}
+
+
+// pagination
 .page__wrapper {
     margin-bottom: 1em;
     display: flex;
@@ -110,6 +128,24 @@ hr {
     border-bottom: 1px solid rgb(150, 100, 20);
     font-weight: 600;
     color: rgb(150, 100, 20);
+}
+
+// navbar
+.navbar {
+    height: 50px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    background-color: rgb(207, 207, 207);
+}
+
+.navbar__links {
+    margin-left: auto;
+}
+
+.nav__link {
+    padding: 0 0.5em;
 }
 
 
