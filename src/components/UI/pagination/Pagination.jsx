@@ -1,8 +1,21 @@
 import React from 'react'
+import { getPagesArray } from '../../../utils/pages'
 
-const Pagination = () => {
+const Pagination = ({totalPages, page, changePage}) => {
+    
+    let pagesArray = getPagesArray(totalPages)  
     return (
-        <div>Pagination</div>
+        <div className='page__wrapper'>
+            {pagesArray.map(p => 
+                <span
+                    onClick={() => changePage(p)}
+                    key={p}
+                    className={page === p ? 'page__number page__current' : 'page__number'}
+                >
+                    {p}
+                </span>
+            )}
+        </div>
     )
 }
 

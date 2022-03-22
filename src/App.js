@@ -1,13 +1,14 @@
 // импортируем реакт везде где будет реакт компонент
 // везде где будет использоваться jsx
 import React, { useEffect, useState } from 'react'
-import PostService from './API/postService'
-import { getPageCount, getPagesArray } from './utils/pages'
 
-// импорт пользовательских хуков
+// Import services and utils
+import PostService from './API/postService'
+import { getPageCount } from './utils/pages'
+
+// Import user hooks
 import { usePosts } from './hooks/usePost'
 import { useFetching } from './hooks/useFetching'
-
 
 // Import components
 import PostList from './components/PostList'
@@ -16,6 +17,7 @@ import PostFilter from './components/PostFilter'
 import MyModal from './components/UI/modal/MyModal'
 import MyButton from './components/UI/button/MyButton'
 import Loader from './components/UI/loader/Loader'
+import Pagination from './components/UI/pagination/Pagination'
 
 // Import Styles
 import './styles/dh-normilize-v1.0.0.scss'
@@ -30,8 +32,7 @@ function App() {
     const [totalPages, setTotalPages] = useState(0)
     const [limit, setLimit] = useState(10)
     const [page, setPage] = useState(1)
-    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
-    let pagesArray = getPagesArray(totalPages)    
+    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)  
 
     const [fetchPosts, isPostLoading, postError] = useFetching(async (limit, page) => {
         const response = await PostService.getAll(limit, page)
@@ -88,17 +89,11 @@ function App() {
                 <PostForm create={createPost} setVisible={setModal}/>
             </MyModal>
 
-            <div className='page__wrapper'>
-                {pagesArray.map(p => 
-                    <span
-                        onClick={() => changePage(p)}
-                        key={p}
-                        className={page === p ? 'page__number page__current' : 'page__number'}
-                    >
-                        {p}
-                    </span>
-                )}
-            </div>
+            <Pagination
+                page={page}
+                changePage={changePage}
+                totalPages={totalPages}
+            />        
             
         </div>
     )
