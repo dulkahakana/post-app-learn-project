@@ -53,6 +53,9 @@ body {
 
 .post__btns {
     display: flex;
+    button:first-child {
+        margin-right: 0.4em;
+    }
 }
 
 .open-post__btn {
