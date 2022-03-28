@@ -1,5 +1,7 @@
-# Ulbi TV YouTube lessons
+# Posts App
+# Учебное приложение в рамках обучения React JS
 
-*bookmark time: 2:26:00*
+
+*bookmark time: 2:32:00*
 
 
