@@ -60,7 +60,8 @@ function Posts() {
 
     return (
         <div className='App'>
-            <MyButton 
+            <MyButton
+                disabled={true}
                 onClick={() => setModal(true)}
                 className='create-post__btn'
             >Создать пост</MyButton>

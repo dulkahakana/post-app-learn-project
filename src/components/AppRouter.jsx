@@ -1,39 +1,43 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-//TODO не работает после .map
-// import { routes } from '../routes/routes'
-
 // pages
+import HomePage from '../pages/HomePage'
 import Posts from '../pages/Posts'
 import About from '../pages/About'
 import PostIdPage from '../pages/PostIdPage'
 import NotFoundPage from '../pages/NotFoundPage'
+import LoginPage from '../pages/LoginPage'
+
 import Layout from './Layout'
+
+import RequireAuth from './hoc/RequireAuth'
+import { AuthProvider } from './hoc/AuthProvider'
 
 const AppRouter = () => {
 
     return (
-        <Routes>
-            <Route path='/' element={<Layout/>}>
-                <Route index element={<Posts/>} />
-
-                <Route path='/' element={<Posts/>} />
-                <Route path='/posts' element={<Posts/>} />
-                <Route path='/posts/:id' element={<PostIdPage/>} />
-                <Route path='/about' element={<About/>} />
-
-                {/* {routes.map((route, index) => 
-                    <Route
-                        key={index}
-                        element={route.element()}
-                        path={route.path}
-                    />
-                )} */}
-
-                <Route path='*' element={<NotFoundPage/>} /> 
-            </Route>
-        </Routes>
+        <AuthProvider>
+            <Routes>
+                <Route path='/' element={<Layout />} >
+                    <Route index element={<HomePage />} />
+                    <Route path='home' element={<HomePage />} />
+                    <Route path='posts' element={
+                        <RequireAuth>
+                            <Posts />
+                        </RequireAuth>
+                    } />
+                    <Route path='posts/:id' element={
+                        <RequireAuth>
+                            <PostIdPage />
+                        </RequireAuth>
+                    } />
+                    <Route path='login' element={<LoginPage />}/>
+                    <Route path='about' element={<About />} />
+                    <Route path='*' element={<NotFoundPage/>} /> 
+                </Route>
+            </Routes>
+        </AuthProvider>
 
     )
 }

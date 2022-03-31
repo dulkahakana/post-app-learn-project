@@ -10,7 +10,7 @@ const Layout = () => {
                 <Navbar/>
             </header>
 
-            <main>
+            <main className='App'>
                 <Outlet/>
             </main>
         </>
