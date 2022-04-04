@@ -2,4 +2,4 @@
 # Учебное приложение в рамках обучения React JS
 
 
-*bookmark time: 2:32:00*
+*bookmark time: 2:39:00*

@@ -12,8 +12,9 @@ const PostIdPage = () => {
     const [post, setPost] = useState({})
     const [comments, setComments] = useState([])
     const navigate = useNavigate()
-
-    const goBack = () => navigate(-1)
+    
+    // const goBack = () => navigate(-1)
+    const goBack = () => navigate('/posts')
 
     const [fetchPostById, isLoading, error] = useFetching(async (id) => {
         const response = await PostService.getById(id)
