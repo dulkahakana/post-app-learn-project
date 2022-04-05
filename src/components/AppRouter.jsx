@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 
 // pages
 import HomePage from '../pages/HomePage'
-import Posts from '../pages/Posts'
-import About from '../pages/About'
+import PostsPage from '../pages/PostsPage'
+import AboutPage from '../pages/AboutPage'
 import PostIdPage from '../pages/PostIdPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import LoginPage from '../pages/LoginPage'
@@ -24,7 +24,7 @@ const AppRouter = () => {
                     <Route path='home' element={<HomePage />} />
                     <Route path='posts' element={
                         <RequireAuth>
-                            <Posts />
+                            <PostsPage />
                         </RequireAuth>
                     } />
                     <Route path='posts/:id' element={
@@ -33,7 +33,7 @@ const AppRouter = () => {
                         </RequireAuth>
                     } />
                     <Route path='login' element={<LoginPage />}/>
-                    <Route path='about' element={<About />} />
+                    <Route path='about' element={<AboutPage />} />
                     <Route path='*' element={<NotFoundPage/>} /> 
                 </Route>
             </Routes>

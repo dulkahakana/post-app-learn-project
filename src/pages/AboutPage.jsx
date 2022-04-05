@@ -1,6 +1,6 @@
 import React from 'react'
 
-const About = () => {
+const AboutPage = () => {
     return (
         <div className='block__title'>
             Это приложение создано в рамках обучения React
@@ -8,4 +8,4 @@ const About = () => {
     )
 }
 
-export default About
+export default AboutPage

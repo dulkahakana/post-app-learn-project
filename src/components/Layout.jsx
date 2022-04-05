@@ -13,6 +13,12 @@ const Layout = () => {
             <main className='App'>
                 <Outlet/>
             </main>
+
+            <footer>
+                <div className="footer-text">
+                    <p>2022</p>
+                </div>
+            </footer>
         </>
     )
 }
